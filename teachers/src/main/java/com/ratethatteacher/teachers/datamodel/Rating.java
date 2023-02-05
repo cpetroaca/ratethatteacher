@@ -17,11 +17,11 @@ public class Rating {
 	private Integer id;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "userId", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
 	private User user;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "teacherId", nullable = false)
+    @JoinColumn(name = "teacher_id", nullable = false)
 	private Teacher teacher;
 	
 	private Byte educationalProwess;
@@ -33,6 +33,9 @@ public class Rating {
 	private Byte parentsInteraction;
 	
 	private String comment;
+
+	public Rating() {
+	}
 
 	public Rating(Integer id, User user, Teacher teacher, Byte educationalProwess, Byte emotionalImpact,
 			Byte creativityBooster, Byte parentsInteraction, String comment) {
