@@ -24,6 +24,9 @@ public class User {
 			cascade = CascadeType.ALL)
 	private Set<Rating> ratings;
 	
+	public User() {
+	}
+
 	public User(Integer id, String fullName, Set<Rating> ratings) {
 		super();
 		this.id = id;

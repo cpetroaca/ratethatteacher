@@ -2,9 +2,10 @@ package com.ratethatteacher.teachers.datamodel;
 
 import java.util.Set;
 
-import org.springframework.data.geo.Point;
+import org.locationtech.jts.geom.Point;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -24,11 +25,15 @@ public class School {
 	
 	private String locationName;
 	
+	@Column(name = "location_point", columnDefinition = "POINT")
 	private Point locationPoint;
 	
 	@OneToMany(mappedBy = "school", fetch = FetchType.LAZY,
 			cascade = CascadeType.ALL)
 	private Set<Teacher> teachers;
+
+	public School() {
+	}
 
 	public School(Integer id, String name, String locationName, Point locationPoint, Set<Teacher> teachers) {
 		this.id = id;

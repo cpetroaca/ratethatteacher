@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ratethatteacher.teachers.datamodel.Teacher;
+import com.ratethatteacher.teachers.datamodel.TeacherDto;
 import com.ratethatteacher.teachers.service.TeachersService;
 
 @RestController
@@ -19,7 +20,9 @@ public class TeachersController {
 	}
 	
 	@GetMapping("/teachers/{id}")
-	public Teacher getTeacher(@PathVariable Integer id) {
-		return teachersService.getTeacher(id);
+	public TeacherDto getTeacher(@PathVariable Integer id) {
+		Teacher teacher = teachersService.getTeacher(id);
+		return new TeacherDto(teacher.getId(), teacher.getFullName()
+				, teacher.getOverallRating(), teacher.getSchool().getName());
 	}
 }

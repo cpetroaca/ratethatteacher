@@ -23,11 +23,14 @@ public class Teacher {
 	private String fullName;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "schoolId", nullable = false)
+    @JoinColumn(name = "school_id", nullable = false)
 	private School school;
 	
 	private Float overallRating;
 	
+	public Teacher() {
+	}
+
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY,
 			cascade = CascadeType.ALL)
 	private Set<Rating> ratings;
