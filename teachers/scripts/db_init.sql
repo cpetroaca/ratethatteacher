@@ -40,3 +40,10 @@ CREATE TABLE ratings(
 INSERT INTO schools(name, location_name, location_point) VALUES("Nicolae Iorga", "Bucuresti", POINT(44.4647054, 26.0702195));
 INSERT INTO users(full_name) VALUES("Cristian Petroaca");
 INSERT INTO teachers(full_name, school_id) VALUES("Maria Popescu", 1);
+INSERT INTO ratings(user_id, teacher_id, educational_prowess, emotional_impact, creativity_booster, parents_interaction, comment) VALUES (1, 1, 5, 5, 5, 5, "Very good teacher");
+UPDATE teachers SET overall_rating = 5 WHERE teachers.id = 1;
+
+INSERT INTO teachers(full_name, school_id) VALUES("Elena Ionescu", 1);
+INSERT INTO ratings(user_id, teacher_id, educational_prowess, emotional_impact, creativity_booster, parents_interaction, comment) VALUES (1, 2, 0, 0, 0, 0, "Very bad teacher");
+UPDATE teachers SET overall_rating = 0 WHERE teachers.id = 2;
+
