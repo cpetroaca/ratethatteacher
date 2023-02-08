@@ -1,9 +1,11 @@
 package com.ratethatteacher.teachers.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.Optional;
+
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.ratethatteacher.teachers.datamodel.Teacher;
 
-public interface TeachersRepository extends CrudRepository<Teacher, Integer> {
-
+public interface TeachersRepository extends PagingAndSortingRepository<Teacher, Integer> {
+	public Optional<Teacher> findById(Integer id);
 }
