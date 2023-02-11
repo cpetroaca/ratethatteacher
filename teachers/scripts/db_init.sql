@@ -37,6 +37,8 @@ CREATE TABLE ratings(
 	FOREIGN KEY (teacher_id) REFERENCES teachers(id)
 );
 
+CREATE FULLTEXT INDEX teachers_full_name_idx ON teachers(full_name);
+
 INSERT INTO schools(name, location_name, location_point) VALUES("Nicolae Iorga", "Bucuresti", POINT(44.4647054, 26.0702195));
 INSERT INTO users(full_name) VALUES("Cristian Petroaca");
 INSERT INTO teachers(full_name, school_id) VALUES("Maria Popescu", 1);

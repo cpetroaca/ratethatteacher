@@ -41,4 +41,16 @@ public class TeachersService {
 		
 		return teachers;
 	}
+	
+	public List<TeacherDto> getTeachersByFullName(String fullName, int limit, int offset) {
+		List<Teacher> it = teachersRepository.findByFullNameContainingWithIdx(fullName);
+		
+		List<TeacherDto> teachers = new ArrayList<>();
+		
+		StreamSupport.stream(it.spliterator(), false)
+			.forEach(teacher -> teachers.add(new TeacherDto(teacher.getId(), teacher.getFullName()
+					, teacher.getOverallRating(), teacher.getSchool().getName())));
+		
+		return teachers;
+	}
 }
