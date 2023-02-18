@@ -6,9 +6,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ratethatteacher.teachers.datamodel.Rating;
 import com.ratethatteacher.teachers.datamodel.TeacherDto;
 import com.ratethatteacher.teachers.service.TeachersService;
 
@@ -40,4 +42,23 @@ public class TeachersController {
 		
 		return teachersService.getTeachers(limit, offset);
 	}
+	
+	@PostMapping(value = "/teachers/ratings")
+	public Rating addRating(@RequestParam Map<String,String> allParams) {
+		Integer userId = Integer.parseInt(allParams.get("userId"));
+		Integer teacherId = Integer.parseInt(allParams.get("teacherId"));
+		Byte educationalProwess = Byte.parseByte(allParams.get("educationalProwess"));
+		Byte emotionalImpact = Byte.parseByte(allParams.get("emotionalImpact"));
+		Byte creativityBooster = Byte.parseByte(allParams.get("creativityBooster"));
+		Byte parentsInteraction = Byte.parseByte(allParams.get("parentsInteraction"));
+		String comment = allParams.get("comment");
+		
+		return teachersService.addRatingForTeacher(userId, teacherId,
+				educationalProwess,
+				emotionalImpact,
+				creativityBooster,
+				parentsInteraction,
+				comment);
+	}
 }
+	

@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
+import com.ratethatteacher.teachers.datamodel.Rating;
 import com.ratethatteacher.teachers.datamodel.Teacher;
 
 public interface TeachersRepository extends PagingAndSortingRepository<Teacher, Integer> {
