@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 @Table(name="ratings")
 public class Rating {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)

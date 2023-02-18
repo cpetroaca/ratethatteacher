@@ -10,14 +10,20 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.ratethatteacher.teachers.datamodel.Rating;
 import com.ratethatteacher.teachers.datamodel.Teacher;
 import com.ratethatteacher.teachers.datamodel.TeacherDto;
+import com.ratethatteacher.teachers.datamodel.User;
+import com.ratethatteacher.teachers.repository.RatingsRepository;
 import com.ratethatteacher.teachers.repository.TeachersRepository;
 
 @Service
 public class TeachersService {
 	@Autowired
 	private TeachersRepository teachersRepository;
+	
+	@Autowired
+	private RatingsRepository ratingsRepository;
 	
 	public TeacherDto getTeacher(Integer id) {
 		Optional<Teacher> opt = teachersRepository.findById(id);
@@ -52,5 +58,23 @@ public class TeachersService {
 					, teacher.getOverallRating(), teacher.getSchool().getName())));
 		
 		return teachers;
+	}
+	
+	public Rating addRatingForTeacher(Integer userId, Integer teacherId,
+			Byte educationalProwess,
+			Byte emotionalImpact,
+			Byte creativityBooster,
+			Byte parentsInteraction,
+			String comment) {
+		User user = new User(userId, null, null);
+		Teacher teacher = new Teacher(teacherId, null, null, null, null);
+		Rating rating = new Rating(null, user, teacher, 
+				educationalProwess,
+				emotionalImpact,
+				creativityBooster,
+				parentsInteraction,
+				comment);
+		
+		return ratingsRepository.save(rating);		
 	}
 }
